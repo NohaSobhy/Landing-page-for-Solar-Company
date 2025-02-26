@@ -4,6 +4,8 @@
 
 This project is a simple yet visually appealing landing page for a solar energy company. It is built using HTML5 and CSS3 only, ensuring a lightweight and fast-loading web page.
 
+view link: https://nohasobhy.github.io/Landing-page-for-Solar-Company/
+
 ## Features
 
 Fully Responsive Design – Adapts to different screen sizes.
@@ -37,8 +39,11 @@ Open the index.html file in a web browser.
 ## Folder Structure
 
 solar-landing-page/
+
 │── index.html   # Main HTML file
+
 │── css/style.css   # CSS file for styling
+
 │── images/      # Folder for images
 
 ## Customization
