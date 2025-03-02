@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* Navbar */
@@ -62,10 +63,29 @@ body {
     font-size: 18px;
     line-height: 22px;
     transition: color 0.3s ease;
+    padding: 8px 15px; 
+    border-radius: 5px;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 3px;
+    border-bottom: 3px solid #0000004D;
 }
 
 .nav-links a:hover {
-    color: #08685d;
+    background-color: #0000000F;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0;
 }
 
 .contact {
@@ -79,6 +99,58 @@ body {
     line-height: 28px;
 }
 
+#menu-toggle {
+    display: none;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+/* RESPONSIVE DESIGN FOR NAVBAR*/
+@media screen and (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .container {
+        padding: 10px 15px;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 86px;
+        left: 0;
+        width: 100%;
+        background-color: #0B9586;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    #menu-toggle:checked ~ .nav-links {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 15px 0;
+    }
+
+    .contact {
+        display: none;
+    }
+}
+
+
 /* Hero Section */
 .hero {
     position: relative;
@@ -87,6 +159,7 @@ body {
     height: 854px;
     display: flex;
     align-items: center;
+    padding: 20px;
 }
 
 .hero::before {
@@ -175,13 +248,92 @@ body {
     width: 208px;
 }
 
+/* RESPONSIVE STYLES FOR HERO SECTION */
+@media screen and (max-width: 1024px) {
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .hero .prog .line {
+        width: 160px;
+    }
+
+    .hero .prog .line::before {
+        width: 60px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        height: auto;
+        padding: 60px 20px;
+    }
+
+    .hero .container {
+        margin-left: 50px; 
+        max-width: 90%;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-green,
+    .btn-yellow {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .hero .container {
+        margin-left: 20px; 
+    }
+
+    .hero .prog {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero .prog .line {
+        width: 120px;
+    }
+
+    .hero .prog .line::before {
+        width: 50px;
+    }
+}
+
 /* Installers Section */
 .installers-section {
     display: flex;
+    flex-wrap: wrap;
     width: 1135.52px;
     height: 712px;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding: 80px 5%;
     gap: 23px;
     justify-content: space-between;
     align-items: center;
@@ -251,18 +403,87 @@ body {
     border-radius: 12px;
 }
 
+/* RESPONSIVE STYLES FOR INSATTELS SECTION */
+@media screen and (max-width: 1024px) {
+    .installers-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .text-content {
+        max-width: 100%;
+    }
+
+    .list li {
+        font-size: 18px;
+    }
+
+    .image-content {
+        position: relative;
+        max-width: 60%;
+        margin-top: -30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .text-content h1 {
+        font-size: 32px;
+    }
+
+    .text-content p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .list li {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .main-image {
+        max-width: 90%;
+    }
+
+    .image-content {
+        max-width: 50%;
+        left: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .installers-section {
+        padding: 40px 8%;
+    }
+
+    .text-content h1 {
+        font-size: 28px;
+    }
+
+    .text-content p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .list li {
+        font-size: 14px;
+    }
+}
+
 /* Power Section */
 .power {
     background: url('../images/power-bg.png') no-repeat center center/cover;
     width: 100%;
-    height: 505px;
+    min-height: 505px;
+    display: flex;
+    align-items: center;
 }
 
 .power-container {
     color: white;
     width: 678px;
-    align-items: center;
-    padding: 100px;
+    max-width: 100%;
+    margin-left: 180px;
 }
 
 .power-container h2 {
@@ -279,16 +500,92 @@ body {
     letter-spacing: 0.9px;
 }
 
+.btn-yellow {
+    background-color: #FFBB1C;
+    color: black;
+    font-size: 16px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-yellow:hover {
+    transform: scale(1.05);
+}
+
+/* RESPONSIVE STYLES FOR POWER SECTION */
+@media screen and (max-width: 1280px) {
+    .power-container {
+        margin-left: 100px;
+    }
+    .power-container h2 {
+        font-size: 38px;
+    }
+    .power-container p {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .power-container {
+        margin-left: 50px;
+    }
+    .power-container h2 {
+        font-size: 36px;
+    }
+    .power-container p {
+        font-size: 17px;
+        line-height: 26px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .power {
+        justify-content: center;
+        text-align: center;
+        padding: 50px 5%;
+    }
+    .power-container {
+        margin-left: 0;
+    }
+    .power-container h2 {
+        font-size: 30px;
+    }
+    .power-container p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .power {
+        padding: 40px 8%;
+    }
+    .power-container h2 {
+        font-size: 24px;
+    }
+    .power-container p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .btn-yellow {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 /* Solar Kits Section */
 .solar-kits {
-    height: 777px;
+    height: auto;
     margin: 0 auto;
     padding: 60px 200px;
     text-align: center;
 }
 
 .kit-title {
-    width: 936px;
+    max-width: 936px;
     margin: 0 auto;
 }
 
@@ -342,7 +639,6 @@ body {
     line-height: 24px;
     letter-spacing: 0.4px;
     padding-bottom: 4px;
-
 }
 
 .kit-content a {
@@ -352,52 +648,191 @@ body {
     font-weight: bold;
 }
 
+/* RESPONSIVE STYLES FOR SOLAR KITS SECTION */
+@media screen and (max-width: 1280px) {
+    .solar-kits {
+        padding: 60px 100px;
+    }
+
+    .kits-container {
+        gap: 24px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .solar-kits {
+        padding: 50px 60px;
+    }
+    
+    .kits-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .kit-card {
+        width: 320px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .solar-kits {
+        padding: 40px 40px;
+    }
+
+    .kit-title h2 {
+        font-size: 36px;
+    }
+
+    .kit-title p {
+        font-size: 14px;
+    }
+
+    .kits-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .kit-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .solar-kits {
+        padding: 30px 20px;
+    }
+
+    .kit-title h2 {
+        font-size: 28px;
+    }
+
+    .kit-title p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .kit-card {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .kit-content p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
 /* Repairs Section */
 .repairs {
     background: url('../images/repairs-bg.png') no-repeat center center/cover;
     color: white;
     text-align: center;
     padding: 80px 50px;
-    height: 505px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .repairs-container {
     background-color: rgba(0, 0, 0, 0.57);
-    height: 311px;
-    width: 858px;
+    width: 750px;
+    max-width: 90%;
     border-radius: 12px;
     padding: 44px;
     gap: 32px;
-    margin: 0 auto;
     backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    /* For Safari */
+    -webkit-backdrop-filter: blur(24px); /* For Safari */
 }
 
 .repairs-container h2 {
     font-size: 42px;
     font-weight: bold;
-    padding-bottom: 32px;
+    padding-bottom: 10px;
 }
 
 .repairs-container p {
     font-size: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0.5px;
     line-height: 28px;
     font-weight: 500;
 }
 
-/* Energy Innovators */
+/* RESPONSIVE STYLES FOR REPAIRS SECTION */
+@media screen and (max-width: 1024px) {
+    .repairs {
+        padding: 60px 40px;
+    }
+
+    .repairs-container {
+        width: 80%;
+        padding: 40px;
+    }
+
+    .repairs-container h2 {
+        font-size: 36px;
+    }
+
+    .repairs-container p {
+        font-size: 18px;
+        line-height: 26px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .repairs {
+        padding: 50px 30px;
+    }
+
+    .repairs-container {
+        width: 100%;
+        padding: 35px;
+    }
+
+    .repairs-container h2 {
+        font-size: 32px;
+    }
+
+    .repairs-container p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .repairs {
+        padding: 40px 20px;
+    }
+
+    .repairs-container {
+        padding: 30px;
+    }
+
+    .repairs-container h2 {
+        font-size: 28px;
+    }
+
+    .repairs-container p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+
+/* Energy Innovators Section */
 .energy-container {
     display: flex;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 32px;
-    padding: 80px 150px;
+    padding: 80px 50px;
     background-color: #FFBB1C0D;
+    justify-content: center;
 }
 
 .energy-content {
     max-width: 370px;
+    text-align: center;
 }
 
 .icon-box {
@@ -408,14 +843,13 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 21px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
 }
 
 .icon-box img {
     width: 56px;
     height: 56px;
     border-radius: 21px;
-
 }
 
 .energy-content h2 {
@@ -446,7 +880,6 @@ body {
     max-width: 360px;
 }
 
-/* Image Placeholder */
 .card-header {
     width: 100%;
     height: 106px;
@@ -477,10 +910,45 @@ body {
     font-size: 16px;
 }
 
+/* RESPONSIVE STYLES FOR ENERGY INNOVATORS SECTION */
+@media (max-width: 1024px) {
+    .energy-container {
+        padding: 60px 30px;
+    }
+    .energy-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .energy-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .energy-cards {
+        grid-template-columns: 1fr;
+    }
+    .energy-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .energy-container {
+        padding: 40px 20px;
+    }
+    .energy-content h2 {
+        font-size: 28px;
+    }
+    .energy-content p {
+        font-size: 16px;
+    }
+}
+
 /* Values Section */
 .values-container {
-    padding: 80px 150px;
-    gap: 32px;
+    padding: 80px 10%;
     text-align: center;
 }
 
@@ -489,7 +957,7 @@ body {
 }
 
 .values-header h2 {
-    font-size: 42px;
+    font-size: 36px;
     font-weight: bold;
     color: #101828;
     padding-bottom: 10px;
@@ -503,8 +971,9 @@ body {
 
 .values-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
+    justify-content: center;
 }
 
 .values-card {
@@ -512,14 +981,13 @@ body {
     border-radius: 12px;
     padding: 32px;
     border: 1px solid #3CAB90;
-    max-width: 350px;
-    text-align: left;
-    margin-left: 10px;
+    max-width: 100%;
+    text-align: center;
 }
 
 .values-card img {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
 }
 
 .values-card h3 {
@@ -534,6 +1002,58 @@ body {
     line-height: 24px;
     color: #475467;
     letter-spacing: 1.5px;
+}
+
+/* RESPONSIVE STYLES FOR VALUES SECTION */
+@media (max-width: 1024px) {
+    .values-container {
+        padding: 60px 8%;
+    }
+}
+
+@media (max-width: 768px) {
+    .values-header h2 {
+        font-size: 28px;
+    }
+
+    .values-header p {
+        font-size: 16px;
+    }
+
+    .values-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .values-card {
+        padding: 24px;
+    }
+
+    .values-card h3 {
+        font-size: 18px;
+    }
+
+    .values-card p {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .values-container {
+        padding: 40px 5%;
+    }
+
+    .values-header h2 {
+        font-size: 24px;
+    }
+
+    .values-header p {
+        font-size: 14px;
+    }
+
+    .values-card p {
+        font-size: 14px;
+        line-height: 20px;
+    }
 }
 
 /* Testimonial Section */
@@ -630,12 +1150,108 @@ blockquote {
     cursor: pointer;
 }
 
-/* Footer */
+/* RESPONSIVE STYLES FOR TESTIMONIAL SECTION */
+@media (max-width: 1200px) {
+    .testimonial-container {
+        padding: 60px 100px;
+    }
+}
 
+@media (max-width: 1024px) {
+    .testimonial-container {
+        padding: 60px 50px;
+    }
+}
+
+@media (max-width: 900px) {
+    .testimonial-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 50px 30px;
+    }
+
+    .testimonial-text {
+        max-width: 100%;
+    }
+
+    .testimonial-card {
+        max-width: 100%;
+        height: auto;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    blockquote {
+        font-size: 22px;
+        padding-bottom: 40px;
+    }
+
+    .profile {
+        justify-content: center;
+    }
+
+    .navigation {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonial-container {
+        padding: 40px 10%;
+    }
+
+    .testimonial-text h2 {
+        font-size: 36px;
+    }
+
+    blockquote {
+        font-size: 20px;
+    }
+
+    .navigation button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-container {
+        padding: 30px 5%;
+    }
+
+    .testimonial-text h2 {
+        font-size: 28px;
+    }
+
+    blockquote {
+        font-size: 18px;
+    }
+
+    .name {
+        font-size: 14px;
+    }
+
+    .position {
+        font-size: 12px;
+    }
+
+    .navigation button {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+}
+
+/* Footer */
 footer {
     background-color: #283646;
     padding: 80px 150px;
-    height: 250px;
 }
 
 .footer {
@@ -645,7 +1261,6 @@ footer {
     flex-wrap: wrap;
     margin-bottom: 58px;
 }
-
 
 .footer-logo img {
     width: 185px;
@@ -664,16 +1279,17 @@ footer {
     color: white;
 }
 
-.footer-input p{
+.footer-input p {
     color: white;
     font-size: 16px;
-    font-weight: 400px;
+    font-weight: 400;
     letter-spacing: 0.5px;
 }
 
 .subscribe {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .subscribe input {
@@ -681,11 +1297,8 @@ footer {
     padding-left: 20px;
     border-radius: 38px;
     border: 1px solid #B3BDC7;
-    width: 200px;
-    margin-right: 10px;
     background-color: #FFFFFF17;
     width: 406px;
-    position: relative;
 }
 
 .subscribe button {
@@ -698,7 +1311,7 @@ footer {
     font-size: 16px;
     color: white;
     position: absolute;
-    right: 130px;
+    right: 0;
 }
 
 .footer-bottom {
@@ -710,11 +1323,12 @@ footer {
     color: white;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .footer-bottom p {
     font-size: 12px;
-    font-weight: 400px;
+    font-weight: 400;
     color: #92989F;
 }
 
@@ -724,21 +1338,96 @@ footer {
     margin: 0 10px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* RESPONSIVE STYLES FOR FOOTER */
+@media (max-width: 1200px) {
+    footer {
+        padding: 80px 100px;
+    }
+}
 
-    .kit-cards,
-    .cards-container {
-        flex-direction: column;
-        align-items: center;
+@media (max-width: 1024px) {
+    footer {
+        padding: 80px 50px;
     }
 
-    .navbar {
+    .footer {
         flex-direction: column;
         text-align: center;
     }
 
-    .hero {
-        padding: 50px 20px;
+    .footer-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .subscribe {
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .subscribe input {
+        width: 80%;
+        max-width: 400px;
+        margin-bottom: 10px;
+    }
+
+    .subscribe button {
+        position: static;
+        width: 150px;
+        margin: 0 auto;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 60px 30px;
+    }
+
+    .footer-links {
+        gap: 20px;
+    }
+
+    .subscribe input {
+        width: 100%;
+    }
+
+    .subscribe button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 40px 20px;
+    }
+
+    .footer-logo img {
+        width: 150px;
+        height: auto;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-input p {
+        font-size: 14px;
+    }
+
+    .subscribe button {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .footer-bottom {
+        font-size: 12px;
     }
 }
